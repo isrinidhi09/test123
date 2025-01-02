@@ -1,22 +1,23 @@
 pipeline {
   agent any
   environment {
-    PYTHON_PATH = 'C:\\Users\\srini\\AppData\\Local\\Programs\\Python\\Python312;C:\\Users\\srini\\AppData\\Local\\Programs\\Python\\Python312\\scripts'
-  }
+  PYTHON_PATH = 'C:\\Users\\srini\\AppData\\Local\\Programs\\Python\\Python312\\;C:\\Users\\srini\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\'
+}
   stages {
     stage('checkout') {
       steps {
         checkout scm
       }
     }
-    stage('build') {
-      steps {
-        bat '''
-        set PATH=%PYTHON_PATH%;%PATH%
-        pip install -r requirement.txt
-        '''
-      }
-    }
+   stage('build') {
+  steps {
+    bat '''
+    set PATH=%PYTHON_PATH%;%PATH%
+    pip install -r requirements.txt
+    '''
+  }
+}
+
     stage('Sonarqube-Analysis') {
       environment {
         SONAR_TOKEN = credentials('sonar-token') // Replaced SONAR-TOKEN with SONAR_TOKEN
