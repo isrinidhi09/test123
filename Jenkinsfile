@@ -20,7 +20,7 @@ pipeline{
       }
         stage('Sonarqube-Analysis'){
           environment{
-            SONAR-TOKEN=credentials('sonar-token')
+            SONAR_TOKEN=credentials('sonar-token')
           }
           step{
             bat '''
