@@ -30,7 +30,6 @@ pipeline{
             -Dsonar.host.url=http://localhost:9000^
             -Dsonar.token=%SONAR_TOKEN%
             '''
-            sonar.token=sqp_70b83dafff0d49104f26b98ae14af12cec99557d"
              }
         }
 }
