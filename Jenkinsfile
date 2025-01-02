@@ -1,7 +1,7 @@
 pipeline{
   agent any
   environment{
-    PYTHON_PATH='C:\Users\srini\AppData\Local\Programs\Python\Python312;C:\Users\srini\AppData\Local\Programs\Python\Python312\scripts'
+    PYTHON_PATH='C:\\Users\\srini\\AppData\\Local\\Programs\\Python\\Python312;C:\\Users\\srini\\AppData\\Local\\Programs\\Python\\Python312\\scripts'
   }
   stage{
     stage('checkout'){
