@@ -1,35 +1,30 @@
 pipeline {
     agent any
+ 
     environment {
-        PYTHON_PATH = 'C:\\Users\\srini\\AppData\\Local\\Programs\\Python\\Python312\\;C:\\Users\\srini\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\'
+        PYTHON_PATH = 'C:\\Users\\srini\\AppData\\Local\\Programs\\Python\\Python312\\;C:\\Users\\srini\\AppData\\Local\\Programs\\Python\\Python312\\Scripts'
     }
+ 
     stages {
-        stage('checkout') {
+        stage('Checkout') {
             steps {
                 checkout scm
             }
         }
-        stage('List Files') {
+ 
+        stage('Build') {
             steps {
-                bat 'dir /s'
-            }
-        }
-        stage('build') {
-            steps {
+                // Set the PATH and install dependencies using pip
                 bat '''
                 set PATH=%PYTHON_PATH%;%PATH%
-                if exist requirements.txt (
-                    pip install -r requirements.txt
-                ) else (
-                    echo requirements.txt not found. Skipping pip install.
-                    exit 1
-                )
+                pip install -r requirement.txt
                 '''
             }
         }
-        stage('Sonarqube-Analysis') {
+ 
+        stage('SonarQube Analysis') {
             environment {
-                SONAR_TOKEN = credentials('sonar-token')
+                SONAR_TOKEN = credentials('sonarqube-token') // Accessing the SonarQube token stored in Jenkins credentials
             }
             steps {
                 bat '''
@@ -39,7 +34,19 @@ pipeline {
                 -Dsonar.host.url=http://localhost:9000 ^
                 -Dsonar.token=%SONAR_TOKEN%
                 '''
-            }
+            } 
+        }
+    }
+ 
+    post {
+        success {
+            echo 'Pipeline completed successfully'
+        }
+        failure {
+            echo 'Pipeline failed'
+        }
+        always {
+            echo 'This runs regardless of the result.'
         }
     }
 }
