@@ -2,8 +2,8 @@ pipeline {
     agent any
  
     environment {
-        PYTHON_PATH = 'C:\Users\srini\AppData\Local\Programs\Python\Python312;C:\Users\srini\AppData\Local\Programs\Python\Python312\Scripts'
-        SONAR_SCANNER_PATH = 'C:\Users\srini\Downloads\sonar-scanner-cli-6.2.1.4610-windows-x64\sonar-scanner-6.2.1.4610-windows-x64\bin'
+        PYTHON_PATH = 'C:/Users/srini/AppData/Local/Programs/Python/Python312;C:/Users/srini/AppData/Local/Programs/Python/Python312/Scripts'
+        SONAR_SCANNER_PATH = 'C:/Users/srini/Downloads/sonar-scanner-cli-6.2.1.4610-windows-x64/sonar-scanner-6.2.1.4610-windows-x64/bin'
     }
  
     stages {
